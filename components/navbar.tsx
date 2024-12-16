@@ -6,6 +6,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import UserButton from "./UserButton";
 
 export default function Navbar() {
   const { user } = useAuth();
@@ -35,18 +36,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <>
-                <Link
-                  href="/dashboard"
-                  className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
-                >
-                  Dashboard
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-md text-sm transition duration-150 ease-in-out"
-                >
-                  Logout
-                </button>
+                <UserButton />
               </>
             ) : (
               <>
@@ -54,7 +44,9 @@ export default function Navbar() {
                   <button className="text-gray-100">Login</button>
                 </Link>
                 <Link href="/signup">
-                  <button className="bg-accent-100 p-2 hover:rounded-xl transition-all duration-200 ease-in-out">Create Account</button>
+                  <button className="bg-accent-100 p-2 hover:rounded-xl transition-all duration-200 ease-in-out">
+                    Create Account
+                  </button>
                 </Link>
               </>
             )}
