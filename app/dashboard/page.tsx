@@ -13,7 +13,7 @@ import {
   doc,
 } from "firebase/firestore";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { Trash2, Plus, Notebook } from "lucide-react";
+import { Trash2, Plus, Search, Menu } from "lucide-react";
 
 export default function Dashboard() {
   const [notes, setNotes] = useState<{ id: string; content: string }[]>([]);
@@ -53,67 +53,53 @@ export default function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <div className="min-h-full p-6">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="flex items-center gap-4 mb-8">
-            <Notebook className="w-10 h-10 text-indigo-600" />
-            <h1 className="text-4xl font-extrabold text-gray-800">
-              Your Notes Dashboard
-            </h1>
-          </div>
-
-          <div className="bg-white shadow-xl rounded-2xl p-6 border-2 border-indigo-100 transition-all duration-300 hover:shadow-2xl">
-            <h2 className="text-2xl font-semibold text-indigo-700 mb-4 flex items-center gap-2">
-              <Plus className="w-6 h-6" /> Add a New Note
-            </h2>
-            <form onSubmit={addNote} className="flex items-center space-x-4">
+      <div className="min-h-screen bg-black text-gray-200">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-10">
+          <form onSubmit={addNote} className="mb-8">
+            <div className="bg-gray-800 rounded-lg shadow-lg p-4">
               <input
                 type="text"
                 value={newNote}
                 onChange={(e) => setNewNote(e.target.value)}
-                placeholder="What's on your mind?"
-                className="flex-grow px-4 py-2 border-2 border-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300"
+                placeholder="Take a note..."
+                className="w-full bg-transparent border-none outline-none text-gray-200 placeholder-gray-400 text-lg"
               />
-              <button
-                type="submit"
-                className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-300 flex items-center gap-2"
-              >
-                <Plus className="w-5 h-5" /> Add Note
-              </button>
-            </form>
-          </div>
+              <div className="flex justify-end mt-4">
+                <button
+                  type="submit"
+                  className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-full hover:bg-yellow-600 transition-colors duration-300 flex items-center"
+                >
+                  <Plus className="w-5 h-5 mr-2" /> Add Note
+                </button>
+              </div>
+            </div>
+          </form>
 
-          <div className="bg-white shadow-xl rounded-2xl p-6 border-2 border-indigo-100 transition-all duration-300 hover:shadow-2xl">
-            <h2 className="text-2xl font-semibold text-indigo-700 mb-4">
-              Your Notes
-            </h2>
+          {/* Notes Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {notes.length === 0 ? (
-              <div className="text-center py-8 text-gray-400">
+              <div className="col-span-full text-center py-8 text-gray-400">
                 <p className="text-lg">No notes yet. Start writing!</p>
                 <p className="text-sm mt-2">Your ideas are waiting...</p>
               </div>
             ) : (
-              <ul className="space-y-4">
-                {notes.map((note) => (
-                  <li
-                    key={note.id}
-                    className="flex items-center justify-between bg-indigo-50 p-4 rounded-lg shadow-sm hover:bg-indigo-100 transition-all duration-300 group"
+              notes.map((note) => (
+                <div
+                  key={note.id}
+                  className="bg-gray-800 rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow duration-300 group relative"
+                >
+                  <p className="text-gray-200 mb-4">{note.content}</p>
+                  <button
+                    onClick={() => deleteNote(note.id)}
+                    className="absolute bottom-2 right-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none"
                   >
-                    <span className="text-gray-700 flex-grow pr-4">
-                      {note.content}
-                    </span>
-                    <button
-                      onClick={() => deleteNote(note.id)}
-                      className="text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-all duration-300 focus:outline-none"
-                    >
-                      <Trash2 className="w-5 h-5" />
-                    </button>
-                  </li>
-                ))}
-              </ul>
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+              ))
             )}
           </div>
-        </div>
+        </main>
       </div>
     </ProtectedRoute>
   );
