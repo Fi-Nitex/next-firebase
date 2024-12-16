@@ -28,11 +28,7 @@ export default function RootLayout({
           <main className="">
             {children}
           </main>
-          <footer className="bg-white shadow-inner">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-gray-500">
-              Creator - Grenish Rai
-            </div>
-          </footer>
+          
         </AuthProvider>
       </body>
     </html>
