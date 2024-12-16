@@ -22,13 +22,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="bg-black shadow-lg absolute top-0 left-0 w-full border-b border-gray-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <span className="text-2xl font-bold text-primary-600">
-                FireNext
+              <span className="text-2xl font-bold text-white">
+                NextJs + Firebase
               </span>
             </Link>
           </div>
@@ -50,17 +50,11 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link
-                  href="/login"
-                  className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
-                >
-                  Login
+                <Link href="/login">
+                  <button className="text-gray-100">Login</button>
                 </Link>
-                <Link
-                  href="/signup"
-                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-md text-sm transition duration-150 ease-in-out"
-                >
-                  Sign Up
+                <Link href="/signup">
+                  <button className="bg-accent-100 p-2 hover:rounded-xl transition-all duration-200 ease-in-out">Create Account</button>
                 </Link>
               </>
             )}
