@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { AtSign, Key } from "lucide-react";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -25,56 +26,48 @@ export default function SignUp() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center">
+    <div className="w-full h-screen flex flex-col items-center justify-center bg-black">
       <div className="card p-8 animate-fade-in w-1/4">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        <h2 className="text-3xl font-bold text-center text-text-100 mb-8">
           Create Your Account
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Email Address
-            </label>
+          <div className="bg-text-100 flex items-center p-2 rounded-xl overflow-hidden">
+            <AtSign size={22} />
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input"
+              className="bg-transparent outline-none w-full ml-2"
+              placeholder="Email"
               required
             />
           </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Password
-            </label>
+          <div className="bg-text-100 flex items-center p-2 rounded-xl overflow-hidden">
+            <Key size={22} />
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input"
+              className="bg-transparent outline-none w-full ml-2"
+              placeholder="Password"
               required
             />
           </div>
           <div>
-            <button type="submit" className="btn w-full">
+            <button type="submit" className="bg-primary-100 w-full p-2 rounded-xl">
               Sign Up
             </button>
           </div>
         </form>
-        <p className="mt-4 text-center text-sm text-gray-600">
+        <p className="mt-4 text-center text-sm text-gray-300">
           Already have an account?{" "}
           <Link
             href="/login"
-            className="font-medium text-primary-600 hover:text-primary-500"
+            className="font-medium text-accent-100"
           >
             Log in here
           </Link>
