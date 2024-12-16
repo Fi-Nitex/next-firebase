@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + Firebase Boilerplate
 
-## Getting Started
+This project serves as a boilerplate for setting up a Next.js application integrated with Firebase. It includes a basic configuration to get you started with server-side rendering (SSR) and Firebase services.
 
-First, run the development server:
+---
 
+## Prerequisites
+
+Before starting, make sure you have the following installed:
+
+1. **Node.js** (v16 or higher)
+2. **Bun** (for package management):
+   - Install Bun by running:
+     ```bash
+     curl -fsSL https://bun.sh/install | bash
+     ```
+
+
+---
+
+## Project Configuration
+
+1. **Firebase Setup:**
+   - Go to the [Firebase Console](https://console.firebase.google.com/).
+   - Create a new project or use an existing one.
+   - In the Project Overview, click on **Add App** to add a web app.
+   - Register the app and copy the Firebase configuration.
+
+2. **Environment Variables:**
+   - Create a `.env.local` file in the root of the project.
+   - Add your Firebase configuration:
+
+3. **Firebase Initialization:**
+   - Make sure the `firebaseConfig` in the `lib/firebase.ts` file matches your Firebase configuration.
+
+---
+
+## Running the Application
+
+To start the development server:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+- **Start Development Server:**
+  ```bash
+  bun run dev
+  ```
 
-To learn more about Next.js, take a look at the following resources:
+- **Build for Production:**
+  ```bash
+  bun run build
+  ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Start Production Server:**
+  ```bash
+  bun start
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Lint the Code:**
+  ```bash
+  bun lint
+  ```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Firebase Services Included
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The boilerplate includes configurations for:
+
+- **Firebase Authentication**
+- **Firebase Firestore**
+- **Firebase Storage**
+
+You can extend this to include other Firebase services as required.
+
+---
+
+## Troubleshooting
+
+1. **Bun Not Found:**
+   - Ensure Bun is installed and added to your `PATH`.
+   - Check installation:
+     ```bash
+     bun -v
+     ```
+
+2. **Firebase Errors:**
+   - Double-check your `.env.local` file for correct Firebase credentials.
+   - Ensure the Firebase project is correctly set up in the Firebase Console.
+
+3. **Port Conflicts:**
+   - If port 3000 is already in use, specify a different port:
+     ```bash
+     bun run dev --port 4000
+     ```
+
+---
+
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
